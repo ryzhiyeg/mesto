@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./pages/index.css">
+    <title>Mesto</title>
+</head>
+
+<body class="page">
+    <header class="header">
+        <img class="header__logo" src="./images/Logo.svg" alt="Логотип">
+    </header>
+
+    <main>
+        <section class="profile">
+            <img class="profile__avatar" src="./images/jak.jpg" alt="Жак-Ив Кусто">
+            <div class="profile__info">
+                <h1 class="profile__title">Жак-Ив Кусто</h1>
+                <button class="profile__edit-button" type="button">
+                    <img class="profile__vector" src="./images/Vector.png" alt="Карандаш">
+                </button>
+                <p class="profile__subtitle">Исследователь океана</p>
+            </div>
+            <button class="profile__button" type="button">
+                <img class="profile__plus" src="./images/plus.png" alt="Плюс">
+            </button>
+        </section>
+
+        <section class="elements">
+            <div class="element">
+                <img class="element__image" src="./images/Moskow.jpg" alt="Москва">
+                <div class="element__block">
+                    <p class="element__title">Москва</p>
+                    <button class="element__like element__like_active" type="button"></button>
+                </div>
+            </div>
+
+            <div class="element">
+                <img class="element__image" src="./images/Elbrus.jpg" alt="Эльбрус">
+                <div class="element__block">
+                    <p class="element__title">Гора Эльбрус</p>
+                    <button class="element__like element__like_active" type="button"></button>
+                </div>
+            </div>
+
+            <div class="element">
+                <img class="element__image" src="./images/Dombai.jpg" alt="Домбай">
+                <div class="element__block">
+                    <p class="element__title">Домбай</p>
+                    <button class="element__like element__like_active" type="button"></button>
+                </div>
+            </div>
+
+            <div class="element">
+                <img class="element__image" src="./images/Elbrus.jpg" alt="Эльбрус">
+                <div class="element__block">
+                    <p class="element__title">Гора Эльбрус</p>
+                    <button class="element__like element__like_active" type="button"></button>
+                </div>
+            </div>
+
+            <div class="element">
+                <img class="element__image" src="./images/Dombai.jpg" alt="Домбай">
+                <div class="element__block">
+                    <p class="element__title">Домбай</p>
+                    <button class="element__like element__like_active" type="button"></button>
+                </div>
+            </div>
+
+            <div class="element">
+                <img class="element__image" src="./images/Moskow.jpg" alt="Московская область">
+                <div class="element__block">
+                    <p class="element__title">Московская область</p>
+                    <button class="element__like element__like_active" type="button"></button>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <p class="footer__copyright">© 2022. Ryzhkov Egor</p>
+    </footer>
+
+    <section class="popup">
+        <div class="popup__container">
+            <button class="popup__close" type="button"></button>
+            <h3 class="popup__title">Редактировать профиль</h3>
+            <form class="popup__form">
+                <input class="popup__input popup__input_name" type="text" placeholder="Ваше имя">
+                <input class="popup__input popup__input_discription" type="text" placeholder="Ваше увлечение">
+            </form>
+            <button class="popup__save" type="submit">Сохранить</button>
+        </div>
+    </section>
+    <script src="./scripts/script.js"></script>
+</body>
