@@ -5,8 +5,8 @@ const profileEditButton = document.querySelector ('.profile__edit-button');
 /*-----------Объявляю переменные попапа-------*/
 const popup = document.querySelector ('.popup');
 const popupContainer = document.querySelector ('.popup__form');
-const popupInputName = document.querySelector ('.popup__input_name');
-const popupInputDiscription = document.querySelector ('.popup__input_discription');
+const popupInputName = document.querySelector ('.popup__input_type_name');
+const popupInputDiscription = document.querySelector ('.popup__input_type_discription');
 const popupClose = document.querySelector ('.popup__close');
 /*-----------Объявляю функции-------*/
 function popupList () {
@@ -24,8 +24,10 @@ function formSubmitHandler(evt) {
     popupCloseList ();
 }
 
+popupContainer.addEventListener('submit', formSubmitHandler);
+
 function popupCloseList () {
     popup.classList.remove('popup_open');
     }
 
-    popupClose.addEventListener('click', popupCloseList);
+popupClose.addEventListener('click', popupCloseList);
