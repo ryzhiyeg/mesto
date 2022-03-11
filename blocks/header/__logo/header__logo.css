@@ -2,6 +2,7 @@
     width: 142px;
     height: 33px;
     transition: 0.2s ease-in-out;
+    cursor: pointer;
 }
 
 .header__logo:hover {

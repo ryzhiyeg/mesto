@@ -6,7 +6,7 @@
     height: 32px;
     border-style: none;
     cursor: pointer;
-    background: transparent url(../../../images/Close.png) 50%;
+    background: url(../../../images/Close.svg) 50%;
     padding: 0;
     margin: 8px;
     background-size: 32px;

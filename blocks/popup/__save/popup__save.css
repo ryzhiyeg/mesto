@@ -11,11 +11,11 @@
     text-align: center;
     color: #FFFFFF;
     cursor: pointer;
+    border: none;
 }
 
 .popup__save:hover {
     opacity: 0.8;
-    border-radius: 2px;
 }
 
 @media screen and (max-width: 880px) {

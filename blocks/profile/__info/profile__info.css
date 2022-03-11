@@ -9,7 +9,7 @@
 @media screen and (max-width: 880px) {
     .profile__info {
         max-width: calc(100% - 120px);
-        margin: 26px auto 36px;
+        margin: 26px auto 29px;
     }
 }
 

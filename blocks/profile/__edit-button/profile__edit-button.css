@@ -6,6 +6,9 @@
     background-color: #000000;
     transition: 0.2s ease-in-out;
     cursor: pointer;
+    background-image: url(../../../images/Vector.png);
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .profile__edit-button:hover {
