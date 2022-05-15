@@ -45,7 +45,7 @@ const popupAddCards = document.querySelector(".addCards");
 const profilePlusButton = document.querySelector(".profile__button");
 const popupCloseCards = popupAddCards.querySelector(".popup__close");
 
-const popapOpenImage = document.querySelector(".popap__pictures");
+const popapOpenImage = document.querySelector(".popup__pictures");
 const popapBigPictures = popapOpenImage.querySelector(".popup__image");
 const popapSubtitleBigImg = popapOpenImage.querySelector(".popup__subtitle");
 const popapCloseBig = popapOpenImage.querySelector(".popup__close");
