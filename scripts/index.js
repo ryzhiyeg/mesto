@@ -33,58 +33,60 @@ const profileEditButton = document.querySelector(".profile__edit-button");
 
 /*-----------Объявляю переменные 1 попапа-------*/
 const popupRedactProfile = document.querySelector(".redactProfile");
-const popupContainer = document.querySelector(".popup__form");
-const popupInputName = document.querySelector(".popup__input_type_name");
-const popupInputDiscription = document.querySelector(
+const popupContainer = popupRedactProfile.querySelector(".popup__form");
+const popupInputNameProfile = popupRedactProfile.querySelector(".popup__input_type_name");
+const popupInputDiscriptionProfile = popupRedactProfile.querySelector(
   ".popup__input_type_discription"
 );
-const popupClose = document.querySelector(".popup__close");
+const popupCloseProfile = popupRedactProfile.querySelector(".popup__close");
 
 /*-----------Объявляю переменные 2 попапа-------*/
 const popupAddCards = document.querySelector(".addCards");
 const profilePlusButton = document.querySelector(".profile__button");
 const popupCloseCards = popupAddCards.querySelector(".popup__close");
 
-const popapOpenImage = document.querySelector(".popup_pictures");
-const popapBigPictures = popapOpenImage.querySelector(".popup__image");
-const popapSubtitleBigImg = popapOpenImage.querySelector(".popup__subtitle");
-const popapCloseBig = popapOpenImage.querySelector(".popup__close");
+const popupOpenImage = document.querySelector(".popup_pictures");
+const popupBigPictures = popupOpenImage.querySelector(".popup__image");
+const popupSubtitleBigImg = popupOpenImage.querySelector(".popup__subtitle");
+const popupCloseBig = popupOpenImage.querySelector(".popup__close");
 
 /*-----------Объявляю функции-------*/
-function popupFirstList() {
-  popupRedactProfile.classList.add("popup_open");
-  popupInputName.value = profileTitle.textContent;
-  popupInputDiscription.value = profileSubtitle.textContent;
-}
-profileEditButton.addEventListener("click", popupFirstList);
+function openPopup(popup) {
+  popup.classList.add("popup_open");
+};
 
-function formSubmitHandler(evt) {
+function closePopup(popup) {
+  popup.classList.remove("popup_open");
+};
+
+profileEditButton.addEventListener("click", function () {
+  popupInputNameProfile.value = profileTitle.textContent;
+  popupInputDiscriptionProfile.value = profileSubtitle.textContent;
+  openPopup(popupRedactProfile)
+});
+
+function handlerFormSubmitProfile(evt) {
   evt.preventDefault();
-  profileTitle.textContent = popupInputName.value;
-  profileSubtitle.textContent = popupInputDiscription.value;
-  popupCloseList();
+  profileTitle.textContent = popupInputNameProfile.value;
+  profileSubtitle.textContent = popupInputDiscriptionProfile.value;
+  closePopup(popupRedactProfile);
 }
 
-popupContainer.addEventListener("submit", formSubmitHandler);
+popupContainer.addEventListener("submit", handlerFormSubmitProfile);
 
-function popupCloseList() {
-  popupRedactProfile.classList.remove("popup_open");
-}
-
-popupClose.addEventListener("click", popupCloseList);
+popupCloseProfile.addEventListener("click", function () {
+  closePopup(popupRedactProfile)
+});
 
 /*-----------Объявляю функции 2го попапа-------*/
-function openPopapCards() {
-  popupAddCards.classList.add("popup_open");
-}
 
-profilePlusButton.addEventListener("click", openPopapCards);
+profilePlusButton.addEventListener("click", function () {
+  openPopup(popupAddCards)
+});
 
-function closePopapCards() {
-  popupAddCards.classList.remove("popup_open");
-}
-
-popupCloseCards.addEventListener("click", closePopapCards);
+popupCloseCards.addEventListener("click", function () {
+  closePopup(popupAddCards)
+});
 
 /*-----------ДОБАВЛЕНИЕ КАРТОЧЕК-------*/
 
@@ -95,8 +97,8 @@ const elementTemplate = document
 /*-----------Дом Элементы-------*/
 const elementContainer = document.querySelector(".elements");
 const formCards = popupAddCards.querySelector(".popup__form");
-const popapInputName = popupAddCards.querySelector(".popup__input_type_name");
-const popapInputDiscription = popupAddCards.querySelector(
+const popupInputNameCards = popupAddCards.querySelector(".popup__input_type_name");
+const popupInputDiscriptionCards = popupAddCards.querySelector(
   ".popup__input_type_discription"
 );
 
@@ -105,10 +107,10 @@ const addSubmitForm = (event) => {
   event.preventDefault();
 
   renderElementCards({
-    name: popapInputName.value,
-    link: popapInputDiscription.value,
+    name: popupInputNameCards.value,
+    link: popupInputDiscriptionCards.value,
   });
-  closePopapCards();
+  closePopup(popupAddCards)
   event.target.reset();
 };
 
@@ -122,23 +124,21 @@ const handleLikeCard = (event) => {
     .classList.toggle("element__like_active");
 };
 
-function popapOpenBigPictures() {
-  popapOpenImage.classList.add("popup_open");
-}
 
-function popapCloseBigPictures() {
-  popapOpenImage.classList.remove("popup_open");
-}
-popapCloseBig.addEventListener("click", popapCloseBigPictures);
+popupCloseBig.addEventListener("click", function () {
+  closePopup(popupOpenImage)
+});
 
 /*-----------Генерация карточки-------*/
-const generateElementCards = (instalFile) => {
+const generateElementCards = (card) => {
   const newElementCard = elementTemplate.cloneNode(true);
 
   const titleElementCard = newElementCard.querySelector(".element__title");
   const imageElementCards = newElementCard.querySelector(".element__image");
-  titleElementCard.textContent = instalFile.name;
-  imageElementCards.src = instalFile.link;
+  titleElementCard.textContent = card.name;
+  imageElementCards.src = card.link;
+  imageElementCards.alt = card.name;
+
 
   const deleteButtonCard = newElementCard.querySelector(".element__remove");
   deleteButtonCard.addEventListener("click", handleDeleteCard);
@@ -146,21 +146,22 @@ const generateElementCards = (instalFile) => {
   likeButtonCard.addEventListener("click", handleLikeCard);
 
   imageElementCards.addEventListener("click", function () {
-    popapSubtitleBigImg.textContent = instalFile.name;
-    popapBigPictures.src = instalFile.link;
-    popapOpenBigPictures();
+    popupSubtitleBigImg.textContent = card.name;
+    popupBigPictures.src = card.link;
+    popupBigPictures.alt = card.name;
+    openPopup(popupOpenImage)
   });
 
   return newElementCard;
 };
 
 /*-----------Функция для рендера-------*/
-const renderElementCards = (instalFile) => {
-  elementContainer.prepend(generateElementCards(instalFile));
+const renderElementCards = (card) => {
+  elementContainer.prepend(generateElementCards(card));
 };
 
-initialCards.forEach((instalFile) => {
-  renderElementCards(instalFile);
+initialCards.forEach((card) => {
+  renderElementCards(card);
 });
 
 popupAddCards.addEventListener("submit", addSubmitForm);
