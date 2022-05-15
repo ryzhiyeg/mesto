@@ -11,11 +11,14 @@
 
 * [Ссылка на макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
 
+* [Ссылка на макет в Figma](https://www.figma.com/file/bjyvbKKJN2naO0ucURl2Z0/)
+
+
 **Картинки**
 
 Картинки брал в фигме и оптимизировал их с помощью (https://tinypng.com/), для того чтобы  сайт загружался быстрее.
 
-Ссылка на сой проект:
+Ссылка на мой проект:
  https://ryzhiyeg.github.io/mesto/
 
-Благодарю команду "Яндекс практикума"
+Благодарю команду "Яндекс практикума" !

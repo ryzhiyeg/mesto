@@ -1,0 +1,15 @@
+.popup__container-bigpic {
+    max-width: 75vw;
+    height: 75vh;
+    width: auto;
+    background-color: rgba(255, 255, 255, 0);
+    vertical-align: center;
+    position: relative;
+}
+
+@media screen and (max-width: 880px) {
+    .popup__container-bigpic {
+        max-width: 282px;
+        padding: 25px 22px;
+    }
+}

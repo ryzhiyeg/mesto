@@ -1,0 +1,17 @@
+.element__remove {
+    background-image: url(../../../images/Group.svg);
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 18px;
+    height: 19px;
+    padding: 0;
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    transition: 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.element__remove:hover {
+    opacity: 0.5;
+}
