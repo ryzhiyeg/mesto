@@ -34,7 +34,9 @@ const profileEditButton = document.querySelector(".profile__edit-button");
 /*-----------Объявляю переменные 1 попапа-------*/
 const popupRedactProfile = document.querySelector(".redactProfile");
 const popupContainer = popupRedactProfile.querySelector(".popup__form");
-const popupInputNameProfile = popupRedactProfile.querySelector(".popup__input_type_name");
+const popupInputNameProfile = popupRedactProfile.querySelector(
+  ".popup__input_type_name"
+);
 const popupInputDiscriptionProfile = popupRedactProfile.querySelector(
   ".popup__input_type_discription"
 );
@@ -50,19 +52,43 @@ const popupBigPictures = popupOpenImage.querySelector(".popup__image");
 const popupSubtitleBigImg = popupOpenImage.querySelector(".popup__subtitle");
 const popupCloseBig = popupOpenImage.querySelector(".popup__close");
 
+/*-----------Объявляю переменную кнопки сохранения создания карточки-------*/
+
+const saveButtonCard = popupAddCards.querySelector(".popup__save");
+
 /*-----------Объявляю функции-------*/
 function openPopup(popup) {
   popup.classList.add("popup_open");
-};
+  popup.addEventListener("mousedown", closePopupClickOverlay);
+  document.addEventListener("keyup", handleButtonEscape);
+}
 
 function closePopup(popup) {
   popup.classList.remove("popup_open");
+  popup.removeEventListener("mousedown", closePopupClickOverlay);
+  document.removeEventListener("keyup", handleButtonEscape);
+}
+
+/*-----------Объявляю функцию закрытия попапа на Esc-------*/
+const handleButtonEscape = (evt) => {
+  if (evt.key === "Escape") {
+    const popupOpenEsc = document.querySelector(".popup_open");
+    closePopup(popupOpenEsc);
+  }
 };
+
+/*-----------Объявляю функцию закрытия попапа Overlay-------*/
+
+function closePopupClickOverlay(evt) {
+  if (evt.target === evt.currentTarget) {
+    closePopup(evt.target);
+  }
+}
 
 profileEditButton.addEventListener("click", function () {
   popupInputNameProfile.value = profileTitle.textContent;
   popupInputDiscriptionProfile.value = profileSubtitle.textContent;
-  openPopup(popupRedactProfile)
+  openPopup(popupRedactProfile);
 });
 
 function handlerFormSubmitProfile(evt) {
@@ -75,17 +101,17 @@ function handlerFormSubmitProfile(evt) {
 popupContainer.addEventListener("submit", handlerFormSubmitProfile);
 
 popupCloseProfile.addEventListener("click", function () {
-  closePopup(popupRedactProfile)
+  closePopup(popupRedactProfile);
 });
 
 /*-----------Объявляю функции 2го попапа-------*/
 
 profilePlusButton.addEventListener("click", function () {
-  openPopup(popupAddCards)
+  openPopup(popupAddCards);
 });
 
 popupCloseCards.addEventListener("click", function () {
-  closePopup(popupAddCards)
+  closePopup(popupAddCards);
 });
 
 /*-----------ДОБАВЛЕНИЕ КАРТОЧЕК-------*/
@@ -97,7 +123,9 @@ const elementTemplate = document
 /*-----------Дом Элементы-------*/
 const elementContainer = document.querySelector(".elements");
 const formCards = popupAddCards.querySelector(".popup__form");
-const popupInputNameCards = popupAddCards.querySelector(".popup__input_type_name");
+const popupInputNameCards = popupAddCards.querySelector(
+  ".popup__input_type_name"
+);
 const popupInputDiscriptionCards = popupAddCards.querySelector(
   ".popup__input_type_discription"
 );
@@ -110,7 +138,8 @@ const addSubmitForm = (event) => {
     name: popupInputNameCards.value,
     link: popupInputDiscriptionCards.value,
   });
-  closePopup(popupAddCards)
+  saveButtonCard.classList.add("popup__save_disabled");
+  closePopup(popupAddCards);
   event.target.reset();
 };
 
@@ -124,9 +153,8 @@ const handleLikeCard = (event) => {
     .classList.toggle("element__like_active");
 };
 
-
 popupCloseBig.addEventListener("click", function () {
-  closePopup(popupOpenImage)
+  closePopup(popupOpenImage);
 });
 
 /*-----------Генерация карточки-------*/
@@ -139,7 +167,6 @@ const generateElementCards = (card) => {
   imageElementCards.src = card.link;
   imageElementCards.alt = card.name;
 
-
   const deleteButtonCard = newElementCard.querySelector(".element__remove");
   deleteButtonCard.addEventListener("click", handleDeleteCard);
   const likeButtonCard = newElementCard.querySelector(".element__like");
@@ -149,7 +176,7 @@ const generateElementCards = (card) => {
     popupSubtitleBigImg.textContent = card.name;
     popupBigPictures.src = card.link;
     popupBigPictures.alt = card.name;
-    openPopup(popupOpenImage)
+    openPopup(popupOpenImage);
   });
 
   return newElementCard;
@@ -165,5 +192,3 @@ initialCards.forEach((card) => {
 });
 
 popupAddCards.addEventListener("submit", addSubmitForm);
-
- 
