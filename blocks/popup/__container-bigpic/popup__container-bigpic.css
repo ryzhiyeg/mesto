@@ -9,7 +9,16 @@
 
 @media screen and (max-width: 880px) {
     .popup__container-bigpic {
-        max-width: 282px;
+        max-height: 75%;
+        max-width: 75%;
         padding: 25px 22px;
+        background-position: center;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .popup__container-bigpic {
+        height: auto;
+        width: auto;
     }
 }

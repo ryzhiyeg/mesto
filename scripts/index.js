@@ -54,7 +54,7 @@ const popupCloseBig = popupOpenImage.querySelector(".popup__close");
 
 /*-----------Объявляю переменную кнопки сохранения создания карточки-------*/
 
-const saveButtonCard = popupAddCards.querySelector(".popup__save");
+const buttonSaveCard = popupAddCards.querySelector(".popup__save");
 
 /*-----------Объявляю функции-------*/
 function openPopup(popup) {
@@ -138,7 +138,7 @@ const addSubmitForm = (event) => {
     name: popupInputNameCards.value,
     link: popupInputDiscriptionCards.value,
   });
-  saveButtonCard.classList.add("popup__save_disabled");
+  buttonSaveCard.classList.add("popup__save_disabled");
   closePopup(popupAddCards);
   event.target.reset();
 };
@@ -167,10 +167,10 @@ const generateElementCards = (card) => {
   imageElementCards.src = card.link;
   imageElementCards.alt = card.name;
 
-  const deleteButtonCard = newElementCard.querySelector(".element__remove");
-  deleteButtonCard.addEventListener("click", handleDeleteCard);
-  const likeButtonCard = newElementCard.querySelector(".element__like");
-  likeButtonCard.addEventListener("click", handleLikeCard);
+  const buttonDeleteCard = newElementCard.querySelector(".element__remove");
+  buttonDeleteCard.addEventListener("click", handleDeleteCard);
+  const buttonlikeCard = newElementCard.querySelector(".element__like");
+  buttonlikeCard.addEventListener("click", handleLikeCard);
 
   imageElementCards.addEventListener("click", function () {
     popupSubtitleBigImg.textContent = card.name;
