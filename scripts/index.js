@@ -72,8 +72,8 @@ function closePopup(popup) {
 /*-----------Объявляю функцию закрытия попапа на Esc-------*/
 const handleButtonEscape = (evt) => {
   if (evt.key === "Escape") {
-    const popupOpenEsc = document.querySelector(".popup_open");
-    closePopup(popupOpenEsc);
+    const popup = document.querySelector(".popup_open");
+    closePopup(popup);
   }
 };
 
@@ -133,7 +133,6 @@ const popupInputDiscriptionCards = popupAddCards.querySelector(
 /*-----------Обработчики событий-------*/
 const addSubmitForm = (event) => {
   event.preventDefault();
-
   renderElementCards({
     name: popupInputNameCards.value,
     link: popupInputDiscriptionCards.value,

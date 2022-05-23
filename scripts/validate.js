@@ -7,84 +7,61 @@ const validElements = {
   errorClass: "popup__error-visible",
 };
 
+
+// Функция, которая добавляет класс с ошибкой
+const showError = (formElement, inputElement, errorMessage, validElements) => {
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  errorElement.textContent = errorMessage;
+  errorElement.classList.add(validElements.errorClass);
+  inputElement.classList.add(validElements.inputErrorClass);
+};
+
+// Функция, которая удаляет класс с ошибкой
+const hideError = (formElement, inputElement, validElements) => {
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  inputElement.classList.remove(validElements.inputErrorClass);
+  errorElement.classList.remove(validElements.errorClass);
+  errorElement.textContent = "";
+};
+
+// функция возвращает или убирает текст ошибки
+
+const checkInputValidity = (formElement, inputElement, validElements) => {
+  if (!inputElement.validity.valid) {
+    showError(formElement, inputElement, inputElement.validationMessage, validElements);
+  } else {
+    hideError(formElement, inputElement, validElements);
+  }
+};
+
 const hasInvalidInput = (inputList) => {
   return inputList.some((inputElement) => {
     return !inputElement.validity.valid;
   });
 };
 
-// Функция, которая добавляет класс с ошибкой
-const showError = (
-  formElement,
-  inputElement,
-  errorMessage,
-  inputErrorClass
-) => {
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  errorElement.textContent = errorMessage;
-  errorElement.classList.add(validElements.errorClass);
-  inputElement.classList.add(inputErrorClass);
-};
-
-// Функция, которая удаляет класс с ошибкой
-const hideError = (formElement, inputElement, inputErrorClass, errorClass) => {
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  inputElement.classList.remove(inputErrorClass);
-  errorElement.classList.remove(errorClass);
-  errorElement.textContent = "";
-};
-
-// функция возвращает или убирает текст ошибки
-
-const checkInputValidity = (
-  formElement,
-  inputElement,
-  inputErrorClass,
-  errorClass
-) => {
-  if (!inputElement.validity.valid) {
-    showError(
-      formElement,
-      inputElement,
-      inputElement.validationMessage,
-      inputErrorClass,
-      errorClass
-    );
+const toggleButtonState = (inputList, buttonElement, validElements) => {
+  if (hasInvalidInput(inputList)) {
+    buttonElement.classList.add(validElements.inactiveButtonClass);
+    buttonElement.disabled = true;
   } else {
-    hideError(formElement, inputElement, inputErrorClass, errorClass);
+    buttonElement.classList.remove(validElements.inactiveButtonClass);
+    buttonElement.disabled = false;
   }
 };
 
 const setEventListeners = (
   formElement,
-  inputSelector,
-  submitButtonSelector,
-  inactiveButtonClass,
-  inputErrorClass,
-  errorClass
+  validElements
 ) => {
-  const inputList = Array.from(formElement.querySelectorAll(inputSelector));
-  const buttonElement = formElement.querySelector(submitButtonSelector);
-  toggleButtonState(inputList, buttonElement, inactiveButtonClass);
+  const inputList = Array.from(formElement.querySelectorAll(validElements.inputSelector));
+  const buttonElement = formElement.querySelector(validElements.submitButtonSelector);
   inputList.forEach((inputElement) => {
     inputElement.addEventListener("input", function () {
-      checkInputValidity(
-        formElement,
-        inputElement,
-        inputErrorClass,
-        errorClass
-      );
+      checkInputValidity(formElement, inputElement, validElements);
       toggleButtonState(inputList, buttonElement, validElements);
     });
   });
-};
-
-const toggleButtonState = (inputList, buttonElement, validElements) => {
-  if (hasInvalidInput(inputList)) {
-    buttonElement.classList.add(validElements.inactiveButtonClass);
-  } else {
-    buttonElement.classList.remove(validElements.inactiveButtonClass);
-  }
 };
 
 function enableValidation(validElements) {
@@ -92,17 +69,7 @@ function enableValidation(validElements) {
     document.querySelectorAll(validElements.formSelector)
   );
   formList.forEach((formElement) => {
-    formElement.addEventListener("submit", (evt) => {
-      evt.preventDefault();
-    });
-    setEventListeners(
-      formElement,
-      validElements.inputSelector,
-      validElements.submitButtonSelector,
-      validElements.inactiveButtonClass,
-      validElements.inputErrorClass,
-      validElements.errorInput
-    );
+    setEventListeners(formElement, validElements);
   });
 }
 
