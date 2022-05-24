@@ -137,7 +137,7 @@ const addSubmitForm = (event) => {
     name: popupInputNameCards.value,
     link: popupInputDiscriptionCards.value,
   });
-  buttonSaveCard.classList.add("popup__save_disabled");
+  disableButton(buttonSaveCard, "popup__save_disabled");
   closePopup(popupAddCards);
   event.target.reset();
 };

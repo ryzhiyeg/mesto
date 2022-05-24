@@ -40,13 +40,21 @@ const hasInvalidInput = (inputList) => {
   });
 };
 
+function disableButton(buttonElement, inactiveButtonClass) {
+  buttonElement.classList.add(inactiveButtonClass); 
+  buttonElement.disabled = true;
+} 
+
+function disableButtonRemove(buttonElement, inactiveButtonClass) {
+  buttonElement.classList.remove(inactiveButtonClass);
+  buttonElement.disabled = false;
+} 
+
 const toggleButtonState = (inputList, buttonElement, validElements) => {
   if (hasInvalidInput(inputList)) {
-    buttonElement.classList.add(validElements.inactiveButtonClass);
-    buttonElement.disabled = true;
+    disableButton(buttonElement, validElements.inactiveButtonClass);
   } else {
-    buttonElement.classList.remove(validElements.inactiveButtonClass);
-    buttonElement.disabled = false;
+    disableButtonRemove(buttonElement, validElements.inactiveButtonClass)
   }
 };
 
@@ -56,6 +64,7 @@ const setEventListeners = (
 ) => {
   const inputList = Array.from(formElement.querySelectorAll(validElements.inputSelector));
   const buttonElement = formElement.querySelector(validElements.submitButtonSelector);
+  toggleButtonState(inputList, buttonElement, validElements);
   inputList.forEach((inputElement) => {
     inputElement.addEventListener("input", function () {
       checkInputValidity(formElement, inputElement, validElements);
