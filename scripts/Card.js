@@ -1,20 +1,20 @@
-class Card {
-    constructor(title, image) {
-    
-        this._title = title ;
-        this._image = image ;
-       
+export class Card {
+    constructor(data, cardSelector) {
+        this._title = data.title ;
+        this._image = data.image ;
+        this._cardSelector = cardSelector;
     }
 
     _getTemplate() {
     const elementTemplate = document
-   .querySelector("#element__template")
+   .querySelector(this._cardSelector)
    .content.querySelector(".element")
    .cloneNode(true);
 
    return elementTemplate;
     }
 
+    //  Генерируем карточку
     generateCard() {
         this._element = this._getTemplate();
         this._setEventListeners();
@@ -26,24 +26,24 @@ class Card {
         this._element.querySelector('.element__remove') = this._buttonDeleteCard;
         this._element.querySelector('.element__like') = this._buttonlikeCard;
 
+        return this._element;
       }
 
     _setEventListeners() {
         //  кнопка лайка карточки
         this._buttonlikeCard.addEventListener("click", () => {
         this._buttonLike;
-        }
+        });
 
          // Кнопка удаления карточки
         this._buttonDeleteCard.addEventListener("click", () => {
         this._buttonDelete;
-        }
+        });
 
         // Нажатие на картинку
         this._cardImage.addEventListener("click", () => {
         this. _handleClickImage;
-        }
-        
+        });
     }
 
     _buttonLike() {
@@ -61,8 +61,5 @@ class Card {
         openPopup(this._popupOpenImage);
     }
 
-    
-
-      
-
 }
+

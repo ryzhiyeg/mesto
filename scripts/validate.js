@@ -1,4 +1,4 @@
-const validElements = {
+export const validElements = {
   formSelector: ".popup__form",
   inputSelector: ".popup__input",
   submitButtonSelector: ".popup__save",
