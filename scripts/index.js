@@ -59,6 +59,7 @@ const popupFormAdd = document.querySelector(".popup__form-add");
 
 /*-----------Объявляю переменные 2 попапа-------*/
 const popupAddCards = document.querySelector(".addCards");
+const popupContainerAdd = popupAddCards.querySelector(".popup__form");
 const profilePlusButton = document.querySelector(".profile__button");
 const popupCloseCards = popupAddCards.querySelector(".popup__close");
 
@@ -153,7 +154,7 @@ const addSubmitForm = (event) => {
   renderCards(data);
   buttonSaveCard.classList.add('popup__save_disabled');
   closePopup(popupAddCards);
-  popupContainer.reset();
+  popupContainerAdd.reset();
 };  
 
 popupCloseBig.addEventListener("click", function () {
