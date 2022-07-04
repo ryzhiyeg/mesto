@@ -25,6 +25,7 @@ const addSubmitForm = (data) => {
   })
   cards.addItem(card)
   addCardPopup.close()
+  validationPopupAdd.resetPoputForm();
 };
 
 /*-----------Генерация карточки-------*/
