@@ -1,8 +1,9 @@
-import { openPopup } from './index.js';
+
 export class Card {
-    constructor(data, cardSelector) {
+    constructor(data, cardSelector, handleCardClick) {
         this._name = data.name;
         this._link = data.link;
+        this._handleCardClick = handleCardClick;
         this._cardSelector = cardSelector;
         this._popupOpenImage = document.querySelector('.popup_pictures');
         this._element = this._getTemplate();
@@ -30,15 +31,6 @@ export class Card {
         this._element.remove();
       }
 
-      handleClickImage() {
-
-        this._popupSubtitleBigImg.textContent = this._name;
-        this._popupBigPictures.src = this._link;
-        this._popupBigPictures.alt = this._name;
-
-        openPopup(this._popupOpenImage);
-    }
-
     _setEventListeners() {
      //  кнопка лайка карточки
     this._element.querySelector('.element__like').addEventListener("click", (event) => {this._buttonLike(event)});
@@ -46,7 +38,7 @@ export class Card {
      this._buttonDeleteCard.addEventListener("click", (event) => {this._buttonDelete(event)});
 
     // Нажатие на картинку
-    this._cardImage.addEventListener("click", (event) => {this. handleClickImage(event)});
+    this._cardImage.addEventListener("click", (event) => {this._handleCardClick(event)});
     }
 
         //  Генерируем карточку

@@ -9,7 +9,7 @@ export class FormValidator {
     }
 
 // Метод, который добавляет класс с ошибкой
-    _showError = (inputElement, errorMessage) => {
+    _showError (inputElement, errorMessage) {
     const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
       errorElement.textContent = errorMessage;
       errorElement.classList.add(this._validElements.errorClass);
@@ -17,14 +17,14 @@ export class FormValidator {
     }
 
 // Метод, который удаляет класс с ошибкой
-    _hideError = (inputElement) => {
+    _hideError (inputElement) {
     const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
       inputElement.classList.remove(this._validElements.inputErrorClass);
       errorElement.classList.remove(this._validElements.errorClass);
       errorElement.textContent = "";
     }
 // Метод, который показывает текст ошибки в зависимости от валидности поля ввода
-    _checkInputValidity = (inputElement) => {
+    _checkInputValidity (inputElement) {
         if (!inputElement.validity.valid) {
           this._showError(inputElement, inputElement.validationMessage);
         } else {
@@ -32,22 +32,27 @@ export class FormValidator {
         }
       };
 
+// Метод, удаления ошибки      
+      resetPoputForm() {
+        this._inputList.forEach((input) => this._hideError(input))
+        this._disabledButton()
+        };
 
 // Метод, включеной кнопки
 
-    disabledButtonRemove = () => {
+    disabledButtonRemove () {
       this._buttonElement.disabled = false;
       this._buttonElement.classList.remove(this._inactiveButtonClass);
   } 
 
 // Метод, выключенной кнопки
-    _disabledButton = () => {
+    _disabledButton () {
       this._buttonElement.disabled = true;
       this._buttonElement.classList.add(this._inactiveButtonClass); 
   }
 
 
-  _hasInvalidInput = () => {
+  _hasInvalidInput () {
     return this._inputList.some((inputElement) => {
       return !inputElement.validity.valid;
     });
@@ -55,7 +60,7 @@ export class FormValidator {
 
 // Метод, который включает/выключает кнопку
     _toggleButtonState () {
-        if (this._hasInvalidInput(this._inputList)) {
+        if (this._hasInvalidInput()) {
           this._disabledButton(this._buttonElement);
           } else {
             this.disabledButtonRemove(this._buttonElement);
@@ -63,7 +68,7 @@ export class FormValidator {
     }
 
 // Слушатель события
-    _setEventListeners = () => {
+    _setEventListeners () {
     this._toggleButtonState();
     this._inputList.forEach((inputElement) => {
       inputElement.addEventListener("input", () => {
@@ -75,7 +80,7 @@ export class FormValidator {
 
 // Метод, который отображает все формы на странице
 
-    enableValidation = () => {
+    enableValidation () {
     this._formElement.addEventListener("submit", (evt) => {
      evt.preventDefault();
       });  
