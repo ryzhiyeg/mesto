@@ -23,7 +23,6 @@ const addSubmitForm = (data) => {
     name : data['title'],
     link : data.discription
   })
-  buttonSaveCard.classList.add('popup__save_disabled');
   cards.addItem(card)
   addCardPopup.close()
 };
