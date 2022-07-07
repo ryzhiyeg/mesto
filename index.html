@@ -30,6 +30,21 @@
         <p class="footer__copyright">© 2022. Ryzhkov Egor</p>
     </footer>
 
+
+    <div class="popup redactAvata">
+        <div class="popup__container">
+            <button class="popup__close" type="button"></button>
+            <h3 class="popup__title">Редактировать профиль</h3>
+            <form class="popup__form popup__form-edit" name="popupForm" novalidate>
+                <input class="popup__input popup__input_type_name" type="text" name="name" id="name" placeholder="Ваше имя" minlength="2" maxlength="40" required>
+                <span class="popup__input-error name-error"></span>
+                <input class="popup__input popup__input_type_discription" type="text" name="discription" id="discription" placeholder="Ваше увлечение" minlength="2" maxlength="200" required>
+                <span class="popup__input-error discription-error"></span>
+                <button class="popup__save" type="submit">Сохранить</button>
+            </form>
+        </div>
+    </div>
+
     <div class="popup redactProfile">
         <div class="popup__container">
             <button class="popup__close" type="button"></button>
