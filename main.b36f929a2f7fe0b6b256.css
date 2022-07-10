@@ -25,7 +25,7 @@
 /*!*************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./src/blocks/profile/__avatar/profile__avatar.css ***!
   \*************************************************************************************************************************************************************************/
-.profile__avatar{border-radius:50%;height:120px;width:120px}
+.profile__avatar{background-image:url(static/jak.bbe7c5b6093ec0273de1.jpg);background-position:50%;background-repeat:no-repeat;background-size:cover;border:0;border-radius:50%;height:120px;-o-object-fit:cover;object-fit:cover;position:relative;width:120px}
 /*!*************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./src/blocks/profile/__button/profile__button.css ***!
   \*************************************************************************************************************************************************************************/
