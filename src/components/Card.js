@@ -1,57 +1,90 @@
-
 export class Card {
-    constructor(data, cardSelector, handleCardClick) {
+    constructor(data, cardSelector, handleCardClick, handleDeleteClick, handleLikeClick, userId) {
+        this._data = data;
+        this._id = data.id;
         this._name = data.name;
         this._link = data.link;
+        this._likes = data.likes;
+        this._ownerId = data.owner.id 
+        this._userId = userId;
         this._handleCardClick = handleCardClick;
+        this._handleDeleteClick = handleDeleteClick;
         this._cardSelector = cardSelector;
-        this._popupOpenImage = document.querySelector('.popup_pictures');
-        this._element = this._getTemplate();
-        this._titleElement =  this._element.querySelector('.element__title');
-        this._buttonDeleteCard = this._element.querySelector('.element__remove');
-        this._buttonlikeCard = this._element.querySelector('.element__like');
-        this._cardImage = this._element.querySelector('.element__image');
-        this._popupOpenImage = document.querySelector(".popup_pictures");
-        this._popupBigPictures = this._popupOpenImage.querySelector(".popup__image");
-        this._popupSubtitleBigImg = this._popupOpenImage.querySelector(".popup__subtitle");
+        this._handleLikeClick = handleLikeClick;
     }
 
     _getTemplate() {
-    const cardElement = document.querySelector(this._cardSelector).content.querySelector('.element')
+    this._element = document.querySelector(this._cardSelector).content.querySelector('.element')
    .cloneNode(true);
 
-   return cardElement;
+    this.like = this._element.querySelector('.element__like');
+    this.photo = this._element.querySelector('.element__image');
+    this.trash = this._element.querySelector('.element__remove');
     }
 
-    _buttonLike(event) {
-        event.target.classList.toggle('element__like_active');
+    _handleLikeClick() {
+      this.like.target.classList.toggle('element__like_active');
       }
 
-    _buttonDelete() {
+    updateLikes(data) {
+      this._likes = data.likes;
+      }
+
+    isLiked () {
+        return Boolean(this._likes.find((item) => 
+        item._id === this._userId));
+      }
+
+      // Активация кнопки лайка
+    updateLikesActive() {
+      this._likesCounter.textContent = this._likes.length;
+      if (this.isLiked()) {
+      this.like.classList.add('element__like_active');
+        } else {
+      this.like.classList.remove('element__like_active');
+        }
+      }
+
+      deleteCard() {
         this._element.remove();
       }
 
     _setEventListeners() {
-     //  кнопка лайка карточки
-    this._element.querySelector('.element__like').addEventListener("click", (event) => {this._buttonLike(event)});
-// Кнопка удаления карточки
-     this._buttonDeleteCard.addEventListener("click", (event) => {this._buttonDelete(event)});
+     //  кнопка лайка 
 
-    // Нажатие на картинку
-    this._cardImage.addEventListener("click", (event) => {this._handleCardClick(event)});
+     this.like.addEventListener('click', () => this._handleLikeClick());
+    
+     // Кнопка удаления карточки
+     this.trash.addEventListener("click", () =>  this._handleDeleteClick());
+
+     // Нажатие на картинку
+     this.photo.addEventListener("click", () => this._handleCardClick(this._data));
     }
+
 
         //  Генерируем карточку
     generateCard() {
-        this._setEventListeners();
+        this._getTemplate();
+        this._element.querySelector('.element__title').textContent = this._name;
     
-        this._cardImage.src = this._link;
-        this._cardImage.alt = this._name;
-        this._titleElement.textContent = this._name;
+        this.photo.src = this._link;
+        this.photo.alt = this._name;
 
-  
+        this._likesCounter = this._element.querySelector('.element__like-counter')
+        this._likesCounter.textContent = this._likes.length;
+
+        if (this._ownerId !== this._userId) {
+          this.trash.classList.add('element__remove-hidden')
+        } 
+    
+        if (this.isLiked()) {
+          this.like.classList.add('element__like_active')
+        }
+
+        this._setEventListeners();
+
           return this._element;
         }
 
-}
 
+}
