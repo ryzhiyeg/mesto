@@ -53,7 +53,7 @@ export const validElements = {
  
 
   export  const popupAddAvatar = document.querySelector(".redactAvatar");
-  export  const profileAvatarButton = document.querySelector(".profile__button_avatar");
+  export  const profileAvatarButton = document.querySelector(".profile__button-avatar");
   export  const popupInputLinkProfile = popupAddAvatar.querySelector(".popup__input_type_discription");
   export  const popupFormAvatar = document.querySelector(".popup__form-avatar");
   
