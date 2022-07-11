@@ -15,13 +15,14 @@ export class PopupWihtTrash extends Popup {
 
 
     setRemove(remove) {
-        this._handleSubmit = remove;
+        this._handleSubmitRemove = remove;
     }
 
-    setEventListeners() {
-        super.setEventListeners();
-        this._trashButton.addEventListener('click', () => {
-            this._handleSubmit();
+    _setEventListeners() {
+        super._setEventListeners();
+        this._trashButton.addEventListener('click', (evt) => {
+            evt.preventDefault();
+            this._handleSubmitRemove();
           });
     }
 }

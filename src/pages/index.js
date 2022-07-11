@@ -44,13 +44,21 @@ let userId;
 
   const userInfo =  new UserInfo(nameProfile, professionProfile, avatarProfile);
 
+
+  const validationPopupEdit = new FormValidator(validElements,popupFormEdit);
+  validationPopupEdit.enableValidation();
+  const validationPopupAdd = new FormValidator(validElements,popupFormAdd);
+  validationPopupAdd.enableValidation();
+  const validationPopupAvatar = new FormValidator(validElements,popupFormAvatar);
+  validationPopupAvatar.enableValidation();
+
   // Попап редактирования профиля____________________________
 
 const editProfilePopup = new PopupWithForm('.redactProfile', (data) =>  {  
   editProfilePopup.loading(true);
   api.changeProfileUser(data)
-    .then((formData) => {
-      userInfo.setUserInfo(formData);
+    .then((data) => {
+      userInfo.setUserInfo(data);
       editProfilePopup.close()
     })
     .catch((err) => {
@@ -61,7 +69,7 @@ const editProfilePopup = new PopupWithForm('.redactProfile', (data) =>  {
     })
   
 });
-  editProfilePopup.setEventListeners();
+  editProfilePopup._setEventListeners();
   profileEditButton.addEventListener("click", () => {
     validationPopupEdit.resetPoputForm();
     editProfilePopup.setInputValues(userInfo.getUserInfo());
@@ -85,7 +93,7 @@ const addAvatarPopup = new PopupWithForm('.redactAvatar', (formData) => {
       })
   });
 
-addAvatarPopup.setEventListeners();
+addAvatarPopup._setEventListeners();
 
 // Кнопка редакт.аватара и ее обработчик
 
@@ -96,12 +104,12 @@ profileAvatarButton.addEventListener('click', () => {
 
 // Попап открытой картинки
 const imagePopup = new PopupWithImage('.popup_pictures');
-imagePopup.setEventListeners();
+imagePopup._setEventListeners();
 
 // Создаем попап с подтверждением удаления карточки
 
 const trashCardPopup = new PopupWihtTrash('.closeEndPopup');
-trashCardPopup.setEventListeners();
+trashCardPopup._setEventListeners();
 
 // попап с формой добавления карточки
     const addCardPopup = new PopupWithForm('.addCards', (formData) => {
@@ -118,20 +126,11 @@ trashCardPopup.setEventListeners();
             addCardPopup.loading(false)
           })
         });
-    addCardPopup.setEventListeners();
+    addCardPopup._setEventListeners();
     profilePlusButton.addEventListener('click', function() {
     validationPopupAdd.resetPoputForm();
     addCardPopup.open()
 });
-
-const validationPopupEdit = new FormValidator(validElements,popupFormEdit);
-validationPopupEdit.enableValidation();
-const validationPopupAdd = new FormValidator(validElements,popupFormAdd);
-validationPopupAdd.enableValidation();
-const validationPopupAvatar = new FormValidator(validElements,popupFormAvatar);
-validationPopupAvatar.enableValidation();
-
-
 
 // КОТОРЫЕ СОЗДАЮТСЯ НА САЙТЕ
 // Создание закрточки

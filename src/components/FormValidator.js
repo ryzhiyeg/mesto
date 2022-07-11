@@ -80,10 +80,7 @@ export class FormValidator {
 
 // Метод, который отображает все формы на странице
 
-    enableValidation () {
-    this._formElement.addEventListener("submit", (evt) => {
-     evt.preventDefault();
-      });  
+    enableValidation () {;  
      this._setEventListeners();
     }
 }

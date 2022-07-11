@@ -11,13 +11,6 @@ export class Api {
         return res.json();
       }
 
-    // _checkRes(res) {
-    //     if (res.ok) {
-    //         return res.json();
-    //     }
-    //   return Promise.reject(`Ошибка: ${res.status}`)
-    // }
-
     getCards() {
         return fetch(`${this._baseUrl}/cards`, {
             method: "GET",
@@ -34,22 +27,14 @@ export class Api {
          .then(this._checkRes);
      }
 
-    //  getUserInfo() {
-    //      return fetch(`${this._baseUrl}/users/me`, {
-    //        headers: this._headers,
-    //      }).then((res) => {
-    //        return this._checkRes(res);
-    //      });
-    //    }
 
-
-    changeProfileUser({ name, discription }) {
+    changeProfileUser(data) {
         return fetch(`${this._baseUrl}/users/me`, {
             method: "PATCH",
             headers: this._headers,
             body: JSON.stringify({
-                name: name,
-                about: discription
+                name: data.name,
+                about: data.discription
               }),
         })
         .then(this._checkRes);

@@ -5,7 +5,7 @@ export class Card {
         this._name = data.name;
         this._link = data.link;
         this._likes = data.likes;
-        this._ownerId = data.owner.id 
+        this._ownerId = data.owner._id;
         this._userId = userId;
         this._handleCardClick = handleCardClick;
         this._handleDeleteClick = handleDeleteClick;
@@ -47,6 +47,7 @@ export class Card {
 
       deleteCard() {
         this._element.remove();
+        this._element = null;
       }
 
     _setEventListeners() {
@@ -82,7 +83,6 @@ export class Card {
         }
 
         this._setEventListeners();
-
           return this._element;
         }
 
