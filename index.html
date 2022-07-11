@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Место</title>
-<script defer src="main.a57dd05187a5f430ec8f.js"></script><link href="main.b36f929a2f7fe0b6b256.css" rel="stylesheet"></head>
+<script defer src="main.c8e29e9fe13f97f7318d.js"></script><link href="main.65453209b0c0041dd81b.css" rel="stylesheet"></head>
 
 <body class="page">
     <header class="header">
@@ -22,7 +22,7 @@
                 <p class="profile__subtitle">Исследователь океана</p>
             </div>
             <button class="profile__button" type="button"></button>
-            <button class="profile__button_avatar" type="button"></button>
+            <button class="profile__button-avatar" type="button"></button>
         </section>
 
         <section class="elements"></section>
@@ -37,8 +37,8 @@
             <button class="popup__close" type="button"></button>
             <h3 class="popup__title">Обновить аватар</h3>
             <form class="popup__form popup__form-avatar" name="popupForm" novalidate>
-                <input class="popup__input popup__input_type_discription" type="url" name="avatar" id="url" placeholder="Ссылка на картинку" required>
-                <span class="popup__input-error url-error"></span>
+                <input class="popup__input popup__input_type_discription" type="url" name="avatar" id="avatar" placeholder="Ссылка на картинку" required>
+                <span class="popup__input-error avatar-error"></span>
                 <button class="popup__save" type="submit">Сохранить</button>
             </form>
         </div>
@@ -94,13 +94,14 @@
           <button class="element__remove" type="button"></button>
           <div class="element__block">
               <h2 class="element__title"></h2>
-              <button class="element__like" type="button"></button>
-              <span class="element__like-counter">0</span>
+              <div class="element__like-location">
+                <button class="element__like" type="button"></button>
+                <span class="element__like-counter">0</span>
+              </div>
           </div>
       </div>
     </template>    
-
-
 </body>
 
 </html>
+
